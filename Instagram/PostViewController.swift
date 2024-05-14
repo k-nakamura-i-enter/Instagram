@@ -15,7 +15,7 @@ class PostViewController: UIViewController {
     var image: UIImage!
 
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var textView: UITextView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +37,9 @@ class PostViewController: UIViewController {
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
         imageRef.putData(imageData!, metadata: metadata) { (metadata, error) in
-            if error != nil {
+            if let error = error {
                 // 画像のアップロード失敗
-                print(error!)
+                print("DEBUG_PRINT: snapshotの取得が失敗しました。 \(error)")
                 SVProgressHUD.showError(withStatus: "画像のアップロードが失敗しました")
                 // 投稿処理をキャンセルし、先頭画面に戻る
                 self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
@@ -49,7 +49,7 @@ class PostViewController: UIViewController {
             let name = Auth.auth().currentUser?.displayName
             let postDic = [
                 "name": name!,
-                "caption": self.textField.text!,
+                "caption": self.textView.text!,
                 "date": FieldValue.serverTimestamp(),
                 ] as [String : Any]
             postRef.setData(postDic)
@@ -65,6 +65,7 @@ class PostViewController: UIViewController {
         // 先頭画面に戻る
         self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
+    
 
     /*
     // MARK: - Navigation

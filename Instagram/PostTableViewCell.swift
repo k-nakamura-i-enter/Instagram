@@ -15,7 +15,10 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
-
+    @IBOutlet weak var commentResent: UILabel!
+    @IBOutlet weak var commentCountLabel: UILabel!
+    @IBOutlet weak var commentButton: UIButton!
+    
     // PostDataの内容をセルに表示
     func setPostData(_ postData: PostData) {
         // 画像の表示
@@ -32,7 +35,16 @@ class PostTableViewCell: UITableViewCell {
         // いいね数の表示
         let likeNumber = postData.likes.count
         likeLabel.text = "\(likeNumber)"
-
+        
+        let commentNumber = postData.comment.count
+        commentCountLabel.text = "\(commentNumber)"
+        if commentNumber == 0 {
+            commentResent.textAlignment = .center
+            commentResent.text = "コメントはありません"
+        } else {
+            commentResent.textAlignment = .left
+            commentResent.text = postData.comment.first
+        }
         // いいねボタンの表示
         if postData.isLiked {
             let buttonImage = UIImage(named: "like_exist")

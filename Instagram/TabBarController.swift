@@ -25,7 +25,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
         // currentUserがnilならログインしていない
         if Auth.auth().currentUser == nil {
             // ログインしていないときの処理
@@ -34,7 +33,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
 
         }
     }
-
     // タブバーのアイコンがタップされた時に呼ばれるdelegateメソッドを処理する。
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController is ImageSelectViewController {

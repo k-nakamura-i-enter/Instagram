@@ -73,6 +73,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         // セル内のボタンのアクションをソースコードで設定する
         cell.likeButton.addTarget(self, action:#selector(handleLikeButton(_:)), for: .touchUpInside)
+        cell.commentButton.addTarget(self, action:#selector(handlecommentButton(_:)), for: .touchUpInside)
 
         return cell
     }
@@ -80,7 +81,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // セル内のボタンがタップされた時に呼ばれるメソッド
     @objc func handleLikeButton(_ sender: UIButton) {
         print("DEBUG_PRINT: likeボタンがタップされました。")
-
         // タップされたセルのインデックスを求める
         let point = sender.convert(CGPoint.zero, to: tableView)
         let indexPath = tableView.indexPathForRow(at: point)
@@ -103,6 +103,40 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let postRef = Firestore.firestore().collection(Const.PostPath).document(postData.id)
             postRef.updateData(["likes": updateValue])
         }
+    }
+    
+    @objc func handlecommentButton(_ sender: UIButton){
+    print("DEBUG_PRINT: commentボタンがタップされました。")
+        guard let commentContent = .text else {
+            return
+        }
+
+        // タップされたセルのインデックスを求める
+        let point = sender.convert(CGPoint.zero, to: self.tableView)
+        let indexPath = self.tableView.indexPathForRow(at: point)
+        
+        // 配列からタップされたインデックスのデータを取り出す
+        let postData = self.postArray[indexPath!.row]
+        
+        // 更新データを作成する
+        var commentContentValue: FieldValue
+        
+        let name = Auth.auth().currentUser?.displayName
+        
+        commentContentValue = FieldValue.arrayUnion(["\(name!): \(commentContent)"])
+        let postRef = Firestore.firestore().collection(Const.PostPath).document(postData.id)
+        postRef.updateData(["likes": commentContentValue])
+    
+    }
+    
+    @objc func handlecommentArea(_ sender: UIButton){
+        print("DEBUG_PRINT: commentエリアがタップされました。")
+        // タップされたセルのインデックスを求める
+        let point = sender.convert(CGPoint.zero, to: tableView)
+        let indexPath = tableView.indexPathForRow(at: point)
+        
+        // 配列からタップされたインデックスのデータを取り出す
+        let postData = postArray[indexPath!.row]
     }
     
 

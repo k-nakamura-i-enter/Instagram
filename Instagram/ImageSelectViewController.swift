@@ -46,7 +46,6 @@ class ImageSelectViewController: UIViewController, UIImagePickerControllerDelega
         if info[.originalImage] != nil {
             // 撮影/選択された画像を取得する
             let image = info[.originalImage] as! UIImage
-            // ここから
             // ZLImageEditorライブラリで画像を加工する
             print("DEBUG_PRINT: image = \(image)")
             // ZLImageEditorで使用する画像加工ツールをセットする
