@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, PostTableViewCellDelegate {
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -24,6 +24,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         tableView.delegate = self
         tableView.dataSource = self
+        
 
         // カスタムセルを登録する
         let nib = UINib(nibName: "PostTableViewCell", bundle: nil)
@@ -81,9 +82,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // セル内のボタンがタップされた時に呼ばれるメソッド
     @objc func handleLikeButton(_ sender: UIButton) {
         print("DEBUG_PRINT: likeボタンがタップされました。")
-        // タップされたセルのインデックスを求める
-        let point = sender.convert(CGPoint.zero, to: tableView)
-        let indexPath = tableView.indexPathForRow(at: point)
+        
+        let indexPath = tableView.indexPathForRow(at: returnPoint(button: sender))
 
         // 配列からタップされたインデックスのデータを取り出す
         let postData = postArray[indexPath!.row]
@@ -106,37 +106,34 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @objc func handlecommentButton(_ sender: UIButton){
-    print("DEBUG_PRINT: commentボタンがタップされました。")
-        guard let commentContent = .text else {
-            return
-        }
-
-        // タップされたセルのインデックスを求める
-        let point = sender.convert(CGPoint.zero, to: self.tableView)
-        let indexPath = self.tableView.indexPathForRow(at: point)
-        
-        // 配列からタップされたインデックスのデータを取り出す
-        let postData = self.postArray[indexPath!.row]
-        
-        // 更新データを作成する
-        var commentContentValue: FieldValue
-        
-        let name = Auth.auth().currentUser?.displayName
-        
-        commentContentValue = FieldValue.arrayUnion(["\(name!): \(commentContent)"])
-        let postRef = Firestore.firestore().collection(Const.PostPath).document(postData.id)
-        postRef.updateData(["likes": commentContentValue])
-    
+        print("DEBUG_PRINT: commentボタンがタップされました。")
+        moveToCommentInputField(point: returnPoint(button: sender))
     }
     
-    @objc func handlecommentArea(_ sender: UIButton){
+    func handlecommentArea(_ sender: UILabel){
         print("DEBUG_PRINT: commentエリアがタップされました。")
-        // タップされたセルのインデックスを求める
-        let point = sender.convert(CGPoint.zero, to: tableView)
+        moveToCommentInputField(point: returnPoint(label: sender))
+    }
+
+    func returnPoint(button: UIButton) -> CGPoint{
+        return button.convert(CGPoint.zero, to: tableView)
+    }
+    func returnPoint(label: UILabel) -> CGPoint{
+        return label.convert(CGPoint.zero, to: tableView)
+    }
+
+    func moveToCommentInputField(point: CGPoint){        
         let indexPath = tableView.indexPathForRow(at: point)
         
-        // 配列からタップされたインデックスのデータを取り出す
-        let postData = postArray[indexPath!.row]
+        let commentView = storyboard?.instantiateViewController(withIdentifier: "Comment") as! CommentViewController
+        if let indexPath = indexPath {
+            commentView.postArray = self.postArray
+            commentView.indexPath = indexPath
+        } else{
+            print("DEBUG_PRINT: indexPathが取得されませんでした。")
+            return
+        }
+        self.present(commentView, animated: true, completion: nil)
     }
     
 

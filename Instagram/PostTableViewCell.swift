@@ -7,6 +7,9 @@
 
 import UIKit
 import FirebaseStorageUI
+protocol PostTableViewCellDelegate: AnyObject {
+    func handlecommentArea(_ sender: UILabel)
+}
 
 class PostTableViewCell: UITableViewCell {
 
@@ -18,6 +21,8 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var commentResent: UILabel!
     @IBOutlet weak var commentCountLabel: UILabel!
     @IBOutlet weak var commentButton: UIButton!
+    
+    weak var delegate: PostTableViewCellDelegate?
     
     // PostDataの内容をセルに表示
     func setPostData(_ postData: PostData) {
@@ -43,7 +48,8 @@ class PostTableViewCell: UITableViewCell {
             commentResent.text = "コメントはありません"
         } else {
             commentResent.textAlignment = .left
-            commentResent.text = postData.comment.first
+            //最新のコメントを表示
+            commentResent.text = postData.comment.last
         }
         // いいねボタンの表示
         if postData.isLiked {
@@ -58,12 +64,20 @@ class PostTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handlecommentArea))
+        commentResent.addGestureRecognizer(tapGesture)
+        commentResent.isUserInteractionEnabled = true
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    @objc func handlecommentArea(_ sender: UILabel){
+        delegate?.handlecommentArea(self.commentResent)
     }
     
 }
