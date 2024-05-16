@@ -19,6 +19,7 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
+    @IBOutlet weak var commenterName: UILabel!
     @IBOutlet weak var commentResent: UILabel!
     @IBOutlet weak var commentCountLabel: UILabel!
     @IBOutlet weak var commentButton: UIButton!
@@ -45,12 +46,15 @@ class PostTableViewCell: UITableViewCell {
         let commentNumber = postData.comment.count
         commentCountLabel.text = "\(commentNumber)"
         if commentNumber == 0 {
+            commenterName.frame = CGRect(origin: commenterName.frame.origin, size: CGSizeZero)
             commentResent.textAlignment = .center
             commentResent.text = "コメントはありません"
         } else {
-            commentResent.textAlignment = .left
             //最新のコメントを表示
-            commentResent.text = postData.comment.last
+//            commenterName.frame = CGRect(origin: commenterName.frame.origin, size: CGSizeZero)
+//            commentResent.textAlignment = .left
+//            commenterName.text = postData.comment
+//            commentResent.text = postData.comment.last?.comment
         }
         // いいねボタンの表示
         if postData.isLiked {

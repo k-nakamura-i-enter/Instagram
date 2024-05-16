@@ -77,9 +77,18 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OdQ-A5-pvh">
-                        <rect key="frame" x="20" y="564" width="353" height="40"/>
+                        <rect key="frame" x="80" y="564" width="293" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="KUl-Ww-NrT"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2qs-ct-hu7">
+                        <rect key="frame" x="20" y="564" width="60" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="qsR-5i-76R"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -89,15 +98,17 @@
                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
+                    <constraint firstItem="OdQ-A5-pvh" firstAttribute="bottom" secondItem="2qs-ct-hu7" secondAttribute="bottom" id="2cy-e6-kTL"/>
                     <constraint firstAttribute="bottomMargin" secondItem="OdQ-A5-pvh" secondAttribute="bottom" constant="10" id="34n-TG-nay"/>
                     <constraint firstAttribute="trailing" secondItem="LA3-EQ-2A6" secondAttribute="trailing" id="3yY-QY-bjA"/>
                     <constraint firstItem="POY-hI-XVa" firstAttribute="centerY" secondItem="Q4w-8V-QlP" secondAttribute="centerY" id="7HK-Kb-CJH"/>
+                    <constraint firstItem="OdQ-A5-pvh" firstAttribute="leading" secondItem="2qs-ct-hu7" secondAttribute="trailing" id="7nM-P8-esM"/>
                     <constraint firstItem="yVE-Oo-ge7" firstAttribute="leading" secondItem="Q4w-8V-QlP" secondAttribute="trailing" constant="10" id="8G1-SQ-9pN"/>
                     <constraint firstItem="Q4w-8V-QlP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="AgY-eB-q18"/>
                     <constraint firstItem="26E-OY-vS9" firstAttribute="top" secondItem="Q4w-8V-QlP" secondAttribute="bottom" constant="10" id="Ehv-tH-XBE"/>
                     <constraint firstItem="Eda-DL-psd" firstAttribute="leading" secondItem="POY-hI-XVa" secondAttribute="trailing" constant="10" id="FXz-Vz-cAK"/>
                     <constraint firstItem="26E-OY-vS9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Gpo-vH-mEZ"/>
-                    <constraint firstItem="OdQ-A5-pvh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="MIw-DT-YwY"/>
+                    <constraint firstItem="OdQ-A5-pvh" firstAttribute="top" secondItem="2qs-ct-hu7" secondAttribute="top" id="O1u-B9-fy9"/>
                     <constraint firstItem="LA3-EQ-2A6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="P3Z-IC-8lw"/>
                     <constraint firstItem="yVE-Oo-ge7" firstAttribute="centerY" secondItem="Q4w-8V-QlP" secondAttribute="centerY" id="RMg-jo-har"/>
                     <constraint firstItem="Eda-DL-psd" firstAttribute="centerY" secondItem="Q4w-8V-QlP" secondAttribute="centerY" id="Wwv-iE-Te3"/>
@@ -105,6 +116,7 @@
                     <constraint firstItem="POY-hI-XVa" firstAttribute="leading" secondItem="yVE-Oo-ge7" secondAttribute="trailing" constant="10" id="YmV-1b-EpZ"/>
                     <constraint firstAttribute="trailingMargin" secondItem="OdQ-A5-pvh" secondAttribute="trailing" id="epk-FC-tEO"/>
                     <constraint firstAttribute="trailingMargin" secondItem="26E-OY-vS9" secondAttribute="trailing" id="g56-dk-4Ob"/>
+                    <constraint firstItem="2qs-ct-hu7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="mvD-9d-0pa"/>
                     <constraint firstItem="LA3-EQ-2A6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="wpc-zk-G2v"/>
                     <constraint firstAttribute="trailingMargin" secondItem="vWz-d6-vKr" secondAttribute="trailing" constant="10" id="xdy-QM-nHI"/>
                     <constraint firstItem="vWz-d6-vKr" firstAttribute="top" secondItem="LA3-EQ-2A6" secondAttribute="bottom" id="xwA-cw-o4B"/>
@@ -117,6 +129,7 @@
                 <outlet property="commentButton" destination="POY-hI-XVa" id="bWt-EY-bgq"/>
                 <outlet property="commentCountLabel" destination="Eda-DL-psd" id="cWl-Jk-AI6"/>
                 <outlet property="commentResent" destination="OdQ-A5-pvh" id="xw3-BC-8e0"/>
+                <outlet property="commenterName" destination="2qs-ct-hu7" id="yMR-P3-hDO"/>
                 <outlet property="dateLabel" destination="vWz-d6-vKr" id="XQk-9F-Q72"/>
                 <outlet property="likeButton" destination="Q4w-8V-QlP" id="txU-ep-vui"/>
                 <outlet property="likeLabel" destination="yVE-Oo-ge7" id="x0U-xc-YlH"/>

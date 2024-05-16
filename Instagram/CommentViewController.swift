@@ -33,7 +33,9 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewWillAppear(animated)
         print("DEBUG_PRINT: viewWillAppear")
         // ログイン済みか確認
-        if Auth.auth().currentUser != nil {
+        if let userName = Auth.auth().currentUser {
+            self.commenterNameLabel.text = "\(userName.displayName!) : "
+            
             let postsRef = Firestore.firestore().collection(Const.PostPath).order(by: "date", descending: true)
             listener = postsRef.addSnapshotListener() { (querySnapshot, error) in
                 if let error = error {
@@ -47,7 +49,6 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
                     return postData
                 }
                 
-                self.commenterNameLabel.text = "\(self.postArray[self.indexPath.row].name) : "
                 // TableViewの表示を更新する
                 self.tableView.reloadData()
             }
@@ -67,7 +68,7 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = self.postArray[self.indexPath.row].comment[indexPath.row]
+//        cell.textLabel?.text = "\(self.postArray[self.indexPath.row].comment[indexPath.row])\(self.postArray[self.indexPath.row].comment[indexPath.row].comment)"
         return cell
     }
     
@@ -81,13 +82,33 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
         
         let postData = postArray[indexPath!.row]
         
-        var commentContentValue: FieldValue
+//        var commentDateValue: FieldValue
+//        var commenterNameValue: FieldValue
+//        var commentValue: FieldValue
+//        var commentContentValue: FieldValue
         
         let name = Auth.auth().currentUser?.displayName
         
-        commentContentValue = FieldValue.arrayUnion(["\(name!) : \(commentContent)"])
+        let map: [String: Any] = [/*"commentDate": FieldValue.serverTimestamp(),*/
+                                  "commenterName": name!,
+                                  "comment": commentContent]
+//        commentDateValue = FieldValue.arrayUnion(])
+//        commenterNameValue = FieldValue.arrayUnion([name!])
+//        commentValue = FieldValue.arrayUnion([commentContent])
+//        commentContentValue = FieldValue.arrayUnion([map])
+        
         let postRef = Firestore.firestore().collection(Const.PostPath).document(postData.id)
-        postRef.updateData(["comment": commentContentValue])
+        
+//        postRef.setData(["comment": commentContentValue])
+//        postRef.updateData(["comment.commentDate": FieldValue.serverTimestamp(),
+//                            "comment.commenterName": name!,
+//                            "comment.comment": commentContent])
+//        postRef.updateData([
+//            "comment.commentDate": FieldValue.arrayUnion([""])
+//        ])
+        postRef.setData([
+          "comments": FieldValue.arrayUnion([map])
+        ])
         
         commentField.text = ""
     }

@@ -209,7 +209,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="コメントを入力してください" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aXl-qE-iER">
-                                <rect key="frame" x="72" y="109" width="311" height="34"/>
+                                <rect key="frame" x="90" y="109" width="293" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -225,10 +225,19 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jS1-jd-b8F">
-                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="40.333333333333336"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="40.333333333333336"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="CommenterName"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="a6d-F7-5om"/>
+                                                        <constraint firstAttribute="width" constant="60" id="blg-si-MfG"/>
                                                     </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZq-4c-MVv">
+                                                    <rect key="frame" x="60" y="0.0" width="333" height="40.333333333333336"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="Comment"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -236,16 +245,23 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="jS1-jd-b8F" firstAttribute="leading" secondItem="xp4-ZZ-bmP" secondAttribute="leading" id="19j-ej-jeL"/>
+                                                <constraint firstItem="hZq-4c-MVv" firstAttribute="leading" secondItem="jS1-jd-b8F" secondAttribute="trailing" id="62V-2C-Lho"/>
                                                 <constraint firstItem="jS1-jd-b8F" firstAttribute="top" secondItem="xp4-ZZ-bmP" secondAttribute="top" id="AMV-oO-XOR"/>
-                                                <constraint firstItem="jS1-jd-b8F" firstAttribute="centerX" secondItem="xp4-ZZ-bmP" secondAttribute="centerX" id="R4g-lk-JBx"/>
+                                                <constraint firstItem="hZq-4c-MVv" firstAttribute="bottom" secondItem="jS1-jd-b8F" secondAttribute="bottom" id="GqV-ip-awN"/>
+                                                <constraint firstItem="jS1-jd-b8F" firstAttribute="leading" secondItem="xp4-ZZ-bmP" secondAttribute="leading" id="PFl-95-Wm4"/>
                                                 <constraint firstItem="jS1-jd-b8F" firstAttribute="centerY" secondItem="xp4-ZZ-bmP" secondAttribute="centerY" id="Rz2-Ut-fo0"/>
+                                                <constraint firstItem="hZq-4c-MVv" firstAttribute="top" secondItem="jS1-jd-b8F" secondAttribute="top" id="zA2-bD-Euw"/>
+                                                <constraint firstAttribute="trailing" secondItem="hZq-4c-MVv" secondAttribute="trailing" id="zxa-xe-dAL"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3FM-Uf-yj9">
-                                <rect key="frame" x="20" y="109" width="42" height="34"/>
+                                <rect key="frame" x="20" y="109" width="60" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="7TT-Et-W9Q"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

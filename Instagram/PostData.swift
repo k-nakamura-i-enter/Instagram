@@ -14,9 +14,17 @@ class PostData: NSObject {
     var name = ""
     var caption = ""
     var date = ""
-    var comment:[String] = []
+    var comment: [Commentvalue] = []
     var likes: [String] = []
     var isLiked: Bool = false
+    
+    struct Commentvalue{
+        var Commentvalue : [String : Any] = [
+            "commentDate" : Timestamp(),
+            "cammenterName" : "",
+            "comment": ""
+        ]
+    }
     
 
     init(document: QueryDocumentSnapshot) {
@@ -38,7 +46,7 @@ class PostData: NSObject {
             self.date = formatter.string(from: timestamp.dateValue())
         }
         
-        if let comment = postDic["comment"] as? [String] {
+        if let comment = postDic["comment"] as? [Commentvalue] {
             self.comment = comment
         }
 
