@@ -111,7 +111,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         moveToCommentInputField(point: returnPoint(button: sender))
     }
     
-    func handlecommentArea(sender: UILabel){
+    func handlecommentArea(_ sender: UILabel){
         print("DEBUG_PRINT: commentエリアがタップされました。")
         moveToCommentInputField(point: returnPoint(label: sender))
     }

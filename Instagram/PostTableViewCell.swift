@@ -9,7 +9,7 @@ import UIKit
 import FirebaseStorageUI
 
 protocol PostTableViewCellDelegate: AnyObject {
-    func handlecommentArea(sender: UILabel)
+    func handlecommentArea(_ sender: UILabel)
 }
 
 class PostTableViewCell: UITableViewCell {
@@ -78,7 +78,7 @@ class PostTableViewCell: UITableViewCell {
     }
     
     @objc func handlecommentArea(){
-        delegate?.handlecommentArea(sender: self.commentResent)
+        delegate?.handlecommentArea(self.commentResent)
     }
     
 }

@@ -209,7 +209,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="コメントを入力してください" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aXl-qE-iER">
-                                <rect key="frame" x="10" y="109" width="373" height="34"/>
+                                <rect key="frame" x="72" y="109" width="311" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -244,19 +244,28 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3FM-Uf-yj9">
+                                <rect key="frame" x="20" y="109" width="42" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="AC5-a5-Ch8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="AC5-a5-Ch8" firstAttribute="bottom" secondItem="atS-DD-xJJ" secondAttribute="bottom" id="1EO-cu-FRI"/>
                             <constraint firstItem="DIX-S0-QVN" firstAttribute="top" secondItem="AC5-a5-Ch8" secondAttribute="top" constant="10" id="1Rr-16-pP9"/>
-                            <constraint firstItem="aXl-qE-iER" firstAttribute="leading" secondItem="AC5-a5-Ch8" secondAttribute="leading" constant="10" id="DYx-zJ-3fV"/>
                             <constraint firstItem="VaT-nz-AaC" firstAttribute="leading" secondItem="AC5-a5-Ch8" secondAttribute="leading" constant="10" id="GGy-Mo-Pvg"/>
                             <constraint firstItem="AC5-a5-Ch8" firstAttribute="trailing" secondItem="atS-DD-xJJ" secondAttribute="trailing" id="Icq-pa-ZP9"/>
+                            <constraint firstItem="aXl-qE-iER" firstAttribute="top" secondItem="3FM-Uf-yj9" secondAttribute="top" id="LdG-oP-cEJ"/>
                             <constraint firstItem="VaT-nz-AaC" firstAttribute="top" secondItem="AC5-a5-Ch8" secondAttribute="top" constant="10" id="U2f-Ks-pcx"/>
+                            <constraint firstItem="3FM-Uf-yj9" firstAttribute="leading" secondItem="AC5-a5-Ch8" secondAttribute="leading" constant="20" id="Wga-b5-Yac"/>
+                            <constraint firstItem="aXl-qE-iER" firstAttribute="bottom" secondItem="3FM-Uf-yj9" secondAttribute="bottom" id="cLd-aR-024"/>
                             <constraint firstItem="aXl-qE-iER" firstAttribute="top" secondItem="DIX-S0-QVN" secondAttribute="bottom" id="dX1-8s-Jee"/>
                             <constraint firstItem="atS-DD-xJJ" firstAttribute="top" secondItem="aXl-qE-iER" secondAttribute="bottom" id="kTZ-cc-svt"/>
                             <constraint firstItem="AC5-a5-Ch8" firstAttribute="trailing" secondItem="aXl-qE-iER" secondAttribute="trailing" constant="10" id="mgF-Pd-puU"/>
+                            <constraint firstItem="aXl-qE-iER" firstAttribute="leading" secondItem="3FM-Uf-yj9" secondAttribute="trailing" constant="10" id="unG-WN-0Ob"/>
                             <constraint firstItem="AC5-a5-Ch8" firstAttribute="trailing" secondItem="DIX-S0-QVN" secondAttribute="trailing" constant="10" id="vsd-3g-F0x"/>
                             <constraint firstItem="atS-DD-xJJ" firstAttribute="leading" secondItem="AC5-a5-Ch8" secondAttribute="leading" id="wfI-6H-ngc"/>
                             <constraint firstItem="DIX-S0-QVN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="VaT-nz-AaC" secondAttribute="trailing" constant="8" symbolic="YES" id="znN-CN-79K"/>
@@ -264,6 +273,7 @@
                     </view>
                     <connections>
                         <outlet property="commentField" destination="aXl-qE-iER" id="E8I-S7-rhv"/>
+                        <outlet property="commenterNameLabel" destination="3FM-Uf-yj9" id="HVl-ul-bW7"/>
                         <outlet property="tableView" destination="atS-DD-xJJ" id="9vr-AH-KnL"/>
                     </connections>
                 </viewController>

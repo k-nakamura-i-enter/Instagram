@@ -12,6 +12,7 @@ import FirebaseFirestore
 class CommentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var commentField: UITextField!
+    @IBOutlet weak var commenterNameLabel: UILabel!
     
     var postArray:[PostData] = []
     var indexPath:IndexPath!
@@ -45,6 +46,8 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
                     print("DEBUG_PRINT: \(postData)")
                     return postData
                 }
+                
+                self.commenterNameLabel.text = "\(self.postArray[self.indexPath.row].name) : "
                 // TableViewの表示を更新する
                 self.tableView.reloadData()
             }
@@ -82,7 +85,7 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
         
         let name = Auth.auth().currentUser?.displayName
         
-        commentContentValue = FieldValue.arrayUnion(["\(name!): \(commentContent)"])
+        commentContentValue = FieldValue.arrayUnion(["\(name!) : \(commentContent)"])
         let postRef = Firestore.firestore().collection(Const.PostPath).document(postData.id)
         postRef.updateData(["comment": commentContentValue])
         
