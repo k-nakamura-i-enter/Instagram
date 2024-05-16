@@ -7,8 +7,9 @@
 
 import UIKit
 import FirebaseStorageUI
+
 protocol PostTableViewCellDelegate: AnyObject {
-    func handlecommentArea(_ sender: UILabel)
+    func handlecommentArea(sender: UILabel)
 }
 
 class PostTableViewCell: UITableViewCell {
@@ -63,7 +64,7 @@ class PostTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+//         Initialization code
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handlecommentArea))
         commentResent.addGestureRecognizer(tapGesture)
         commentResent.isUserInteractionEnabled = true
@@ -76,8 +77,8 @@ class PostTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    @objc func handlecommentArea(_ sender: UILabel){
-        delegate?.handlecommentArea(self.commentResent)
+    @objc func handlecommentArea(){
+        delegate?.handlecommentArea(sender: self.commentResent)
     }
     
 }

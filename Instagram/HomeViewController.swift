@@ -75,6 +75,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // セル内のボタンのアクションをソースコードで設定する
         cell.likeButton.addTarget(self, action:#selector(handleLikeButton(_:)), for: .touchUpInside)
         cell.commentButton.addTarget(self, action:#selector(handlecommentButton(_:)), for: .touchUpInside)
+        cell.delegate = self
 
         return cell
     }
@@ -110,7 +111,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         moveToCommentInputField(point: returnPoint(button: sender))
     }
     
-    func handlecommentArea(_ sender: UILabel){
+    func handlecommentArea(sender: UILabel){
         print("DEBUG_PRINT: commentエリアがタップされました。")
         moveToCommentInputField(point: returnPoint(label: sender))
     }
