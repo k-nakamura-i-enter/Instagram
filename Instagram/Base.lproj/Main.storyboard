@@ -279,7 +279,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3FM-Uf-yj9">
                                 <rect key="frame" x="20" y="109" width="60" height="34"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="7TT-Et-W9Q"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="7TT-Et-W9Q"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>

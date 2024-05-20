@@ -42,23 +42,25 @@ class ImageSelectViewController: UIViewController, UIImagePickerControllerDelega
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         // UIImagePickerController画面を閉じる
         picker.dismiss(animated: true, completion: nil)
+        
         // 画像加工処理
-        if info[.originalImage] != nil {
-            // 撮影/選択された画像を取得する
-            let image = info[.originalImage] as! UIImage
-            // ZLImageEditorライブラリで画像を加工する
-            print("DEBUG_PRINT: image = \(image)")
-            // ZLImageEditorで使用する画像加工ツールをセットする
-            ZLImageEditorConfiguration.default()
-                .editImageTools([.draw, .clip, .textSticker, .mosaic, .filter, .adjust])
-                .adjustTools([.brightness, .contrast, .saturation])
-            // ZLImageEditorの画像加工画面に遷移する
-            ZLEditImageViewController.showEditImageVC(parentVC: self, image: image) { image, _ in
-                // ZLImageEditorで加工された画像を投稿画面に渡して画面遷移する
-                let postViewController = self.storyboard?.instantiateViewController(withIdentifier: "Post") as! PostViewController
-                postViewController.image = image
-                self.present(postViewController, animated: true, completion: nil)
-            }
+        guard info[.originalImage] != nil else {
+            return
+        }
+        // 撮影/選択された画像を取得する
+        let image = info[.originalImage] as! UIImage
+        // ZLImageEditorライブラリで画像を加工する
+        print("DEBUG_PRINT: image = \(image)")
+        // ZLImageEditorで使用する画像加工ツールをセットする
+        ZLImageEditorConfiguration.default()
+            .editImageTools([.draw, .clip, .textSticker, .mosaic, .filter, .adjust])
+            .adjustTools([.brightness, .contrast, .saturation])
+        // ZLImageEditorの画像加工画面に遷移する
+        ZLEditImageViewController.showEditImageVC(parentVC: self, image: image) { image, _ in
+            // ZLImageEditorで加工された画像を投稿画面に渡して画面遷移する
+            let postViewController = self.storyboard?.instantiateViewController(withIdentifier: "Post") as! PostViewController
+            postViewController.image = image
+            self.present(postViewController, animated: true, completion: nil)
         }
     }
     
