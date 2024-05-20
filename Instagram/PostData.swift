@@ -14,16 +14,14 @@ class PostData: NSObject {
     var name = ""
     var caption = ""
     var date = ""
-    var comment: [Commentvalue] = []
+    var comments: [Commentvalue] = []
     var likes: [String] = []
     var isLiked: Bool = false
     
     struct Commentvalue{
-        var Commentvalue : [String : Any] = [
-            "commentDate" : Timestamp(),
-            "cammenterName" : "",
-            "comment": ""
-        ]
+        var commentDate = ""
+        var cammenterName = ""
+        var comment = ""
     }
     
 
@@ -46,8 +44,10 @@ class PostData: NSObject {
             self.date = formatter.string(from: timestamp.dateValue())
         }
         
-        if let comment = postDic["comment"] as? [Commentvalue] {
-            self.comment = comment
+        if let comments = postDic["comment"] as? [[String: Any]] {
+            for comments in {
+                
+            }
         }
 
         if let likes = postDic["likes"] as? [String] {

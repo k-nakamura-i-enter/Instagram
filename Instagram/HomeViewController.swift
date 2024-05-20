@@ -24,13 +24,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         tableView.delegate = self
         tableView.dataSource = self
-        
 
         // カスタムセルを登録する
         let nib = UINib(nibName: "PostTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "Cell")
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -41,7 +39,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let postsRef = Firestore.firestore().collection(Const.PostPath).order(by: "date", descending: true)
             listener = postsRef.addSnapshotListener() { (querySnapshot, error) in
                 if let error = error {
-                    print("DEBUG_PRINT: snapshotの取得が失敗しました。 \(error)")
+                    print("DEBUG_PRINT: postSnapshotの取得が失敗しました。 \(error)")
                     return
                 }
                 // 取得したdocumentをもとにPostDataを作成し、postArrayの配列にする。
@@ -70,7 +68,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // セルを取得してデータを設定する
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PostTableViewCell
-        cell.setPostData(postArray[indexPath.row])
+        cell.setPostData(postData: postArray[indexPath.row])
 
         // セル内のボタンのアクションをソースコードで設定する
         cell.likeButton.addTarget(self, action:#selector(handleLikeButton(_:)), for: .touchUpInside)
@@ -119,6 +117,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func returnPoint(button: UIButton) -> CGPoint{
         return button.convert(CGPoint.zero, to: tableView)
     }
+    
     func returnPoint(label: UILabel) -> CGPoint{
         return label.convert(CGPoint.zero, to: tableView)
     }
@@ -128,8 +127,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let commentView = storyboard?.instantiateViewController(withIdentifier: "Comment") as! CommentViewController
         if let indexPath = indexPath {
-            commentView.postArray = self.postArray
-            commentView.indexPath = indexPath
+            commentView.indexPath = indexPath.row
         } else{
             print("DEBUG_PRINT: indexPathが取得されませんでした。")
             return

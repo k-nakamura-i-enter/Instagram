@@ -82,30 +82,13 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
         
         let postData = postArray[indexPath!.row]
         
-//        var commentDateValue: FieldValue
-//        var commenterNameValue: FieldValue
-//        var commentValue: FieldValue
-//        var commentContentValue: FieldValue
-        
         let name = Auth.auth().currentUser?.displayName
         
         let map: [String: Any] = [/*"commentDate": FieldValue.serverTimestamp(),*/
                                   "commenterName": name!,
                                   "comment": commentContent]
-//        commentDateValue = FieldValue.arrayUnion(])
-//        commenterNameValue = FieldValue.arrayUnion([name!])
-//        commentValue = FieldValue.arrayUnion([commentContent])
-//        commentContentValue = FieldValue.arrayUnion([map])
-        
         let postRef = Firestore.firestore().collection(Const.PostPath).document(postData.id)
-        
-//        postRef.setData(["comment": commentContentValue])
-//        postRef.updateData(["comment.commentDate": FieldValue.serverTimestamp(),
-//                            "comment.commenterName": name!,
-//                            "comment.comment": commentContent])
-//        postRef.updateData([
-//            "comment.commentDate": FieldValue.arrayUnion([""])
-//        ])
+
         postRef.setData([
           "comments": FieldValue.arrayUnion([map])
         ])
