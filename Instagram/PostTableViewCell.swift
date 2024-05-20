@@ -19,10 +19,12 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
+    @IBOutlet weak var commentDate: UILabel!
     @IBOutlet weak var commenterName: UILabel!
     @IBOutlet weak var commentResent: UILabel!
     @IBOutlet weak var commentCountLabel: UILabel!
     @IBOutlet weak var commentButton: UIButton!
+    @IBOutlet weak var commentStatus: UILabel!
     
     weak var delegate: PostTableViewCellDelegate?
     
@@ -43,18 +45,19 @@ class PostTableViewCell: UITableViewCell {
         let likeNumber = postData.likes.count
         likeLabel.text = "\(likeNumber)"
         
-        let commentNumber = postData.comment.count
+        let commentNumber = postData.comments.count
         commentCountLabel.text = "\(commentNumber)"
         if commentNumber == 0 {
-            commenterName.frame = CGRect(origin: commenterName.frame.origin, size: CGSizeZero)
-            commentResent.textAlignment = .center
-            commentResent.text = "コメントはありません"
+            commentDate.text = ""
+            commenterName.text = ""
+            commentResent.text = ""
+            commentStatus.text = "コメントはありません"
         } else {
             //最新のコメントを表示
-//            commenterName.frame = CGRect(origin: commenterName.frame.origin, size: CGSizeZero)
-//            commentResent.textAlignment = .left
-//            commenterName.text = postData.comment
-//            commentResent.text = postData.comment.last?.comment
+            commentDate.text = postData.comments.last?.commentDate
+            commenterName.text = "\(postData.comments.last?.commenterName ?? "") : "
+            commentResent.text = postData.comments.last?.comment
+            commentStatus.text = ""
         }
         // いいねボタンの表示
         if postData.isLiked {

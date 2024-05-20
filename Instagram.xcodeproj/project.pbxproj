@@ -25,6 +25,7 @@
 		CF9D7E1D2BF1F5B200196E68 /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9D7E1C2BF1F5B200196E68 /* PostData.swift */; };
 		CF9D7E202BF1F5EB00196E68 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9D7E1E2BF1F5EB00196E68 /* PostTableViewCell.swift */; };
 		CF9D7E212BF1F5EB00196E68 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9D7E1F2BF1F5EB00196E68 /* PostTableViewCell.xib */; };
+		CFAC4A322BFB1CCA0012BB0F /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAC4A312BFB1CCA0012BB0F /* CommentTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		CF9D7E1C2BF1F5B200196E68 /* PostData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
 		CF9D7E1E2BF1F5EB00196E68 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		CF9D7E1F2BF1F5EB00196E68 /* PostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
+		CFAC4A312BFB1CCA0012BB0F /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				CF9D7E1E2BF1F5EB00196E68 /* PostTableViewCell.swift */,
 				CF9D7E1F2BF1F5EB00196E68 /* PostTableViewCell.xib */,
 				CF226E6E2BF19BB7001EAB98 /* Main.storyboard */,
+				CFAC4A312BFB1CCA0012BB0F /* CommentTableViewCell.swift */,
 				CF226E712BF19BB7001EAB98 /* Assets.xcassets */,
 				CF226E732BF19BB8001EAB98 /* LaunchScreen.storyboard */,
 				CF226E762BF19BB8001EAB98 /* Info.plist */,
@@ -249,6 +252,7 @@
 				CF226E852BF19C6E001EAB98 /* SettingViewController.swift in Sources */,
 				CF9D7E1D2BF1F5B200196E68 /* PostData.swift in Sources */,
 				CF226E7D2BF19C32001EAB98 /* LoginViewController.swift in Sources */,
+				CFAC4A322BFB1CCA0012BB0F /* CommentTableViewCell.swift in Sources */,
 				CF226E692BF19BB7001EAB98 /* AppDelegate.swift in Sources */,
 				CF226E6B2BF19BB7001EAB98 /* SceneDelegate.swift in Sources */,
 				CF2F49752BF34E3F00597524 /* CommentViewController.swift in Sources */,

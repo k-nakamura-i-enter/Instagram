@@ -14,8 +14,8 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var commentField: UITextField!
     @IBOutlet weak var commenterNameLabel: UILabel!
     
-    var postArray:[PostData] = []
-    var indexPath:IndexPath!
+    var postArray: [PostData] = []
+    var indexPath: Int = 0
     
     // Firestoreのリスナー
     var listener: ListenerRegistration?
@@ -63,12 +63,17 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return postArray[self.indexPath.row].comment.count
+        guard postArray.isEmpty else {
+            return postArray[indexPath].comments.count
+        }
+        return 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-//        cell.textLabel?.text = "\(self.postArray[self.indexPath.row].comment[indexPath.row])\(self.postArray[self.indexPath.row].comment[indexPath.row].comment)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CommentTableViewCell
+        cell.commentDateLabel.text = "\(postArray[self.indexPath].comments[indexPath.row].commentDate)"
+        cell.commenterNameLabel.text = "\(postArray[self.indexPath].comments[indexPath.row].commenterName) : "
+        cell.commentLabel.text = "\(postArray[self.indexPath].comments[indexPath.row].comment)"
         return cell
     }
     
@@ -80,17 +85,18 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
             return
         }
         
-        let postData = postArray[indexPath!.row]
-        
+        let postData = postArray[indexPath]
         let name = Auth.auth().currentUser?.displayName
         
-        let map: [String: Any] = [/*"commentDate": FieldValue.serverTimestamp(),*/
-                                  "commenterName": name!,
-                                  "comment": commentContent]
+        let commentDic: [String: Any] = [
+            "commentDate": Timestamp(),
+            "commenterName": name!,
+            "comment": commentContent
+        ]
         let postRef = Firestore.firestore().collection(Const.PostPath).document(postData.id)
 
-        postRef.setData([
-          "comments": FieldValue.arrayUnion([map])
+        postRef.updateData([
+          "comments": FieldValue.arrayUnion([commentDic])
         ])
         
         commentField.text = ""

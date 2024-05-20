@@ -20,7 +20,7 @@ class PostData: NSObject {
     
     struct Commentvalue{
         var commentDate = ""
-        var cammenterName = ""
+        var commenterName = ""
         var comment = ""
     }
     
@@ -44,9 +44,19 @@ class PostData: NSObject {
             self.date = formatter.string(from: timestamp.dateValue())
         }
         
-        if let comments = postDic["comment"] as? [[String: Any]] {
-            for comments in {
-                
+        if let comments = postDic["comments"] as? [[String: Any]] {
+            for commentData in comments {
+                if let commentDate = commentData["commentDate"] as? Timestamp,
+                   let commenterName = commentData["commenterName"] as? String,
+                   let comment = commentData["comment"] as? String {
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "yyyy-MM-dd HH:mm"
+                    var commentValue = Commentvalue()
+                    commentValue.commentDate = formatter.string(from: commentDate.dateValue())
+                    commentValue.commenterName = commenterName
+                    commentValue.comment = comment
+                    self.comments.append(commentValue)
+                }
             }
         }
 
@@ -64,6 +74,6 @@ class PostData: NSObject {
     }
 
     override var description: String {
-        return "PostData: name=\(name); caption=\(caption); date=\(date); coment=\(comment.count); likes=\(likes.count); id=\(id);"
+        return "PostData: name=\(name); caption=\(caption); date=\(date); coments=\(comments.count); likes=\(likes.count); id=\(id);"
     }
 }
